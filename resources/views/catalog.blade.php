@@ -1,5 +1,5 @@
-<x-site-layout>
+<x-app-layout>
     <x-slot name="slot">
-        <h1>catalog</h1>
+        {{ $allProducts }}
     </x-slot>
-</x-site-layout>
+</x-app-layout>
