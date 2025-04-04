@@ -8,18 +8,18 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function getAllCategories(Request $request)
+    public function index(Request $request)
     {   
-        $allCategories = Category::getAll();
+        $allCategories = Category::getAllCategories();
         return view("admin/categories/index", compact("allCategories"));
     }
 
-    public function categoryCreate()
+    public function create()
     {   
         return view("admin/categories/create");
     }
 
-    public function categoryStore(Request $request)
+    public function store(Request $request)
     {
         $data = [
             "title" => $request->post("title"),
@@ -29,13 +29,13 @@ class CategoryController extends Controller
         return to_route("categoryIndex");
     }
 
-    public function categoryEdit(int $id)
+    public function edit(int $id)
     {
-        $category = Category::getAll($id);
+        $category = Category::getAllCategories($id);
         return view("admin/categories/edit", compact("category"));
     }
     
-    public function categoryUpdate(Request $request, $id)
+    public function update(Request $request, $id)
     {   
         $data = [
             "title" => $request->post("title"),
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         return to_route("categoryIndex");
     }
 
-    public function categoryDelete($id)
+    public function delete($id)
     {
         Category::categoryDelete($id);
         return back();

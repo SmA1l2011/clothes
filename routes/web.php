@@ -20,19 +20,19 @@ Route::get('/products', [ProductController::class, 'catalog'])->name('catalog');
 /* Admin Panel */
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/category', [CategoryController::class, 'getAllCategories'])->name('categoryIndex');
-        Route::get('/category/create', [CategoryController::class, 'categoryCreate'])->name('categoryCreate');
-        Route::post('/category/store', [CategoryController::class, 'categoryStore'])->name('categoryStore');
-        Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('categoryEdit');
-        Route::patch('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('categoryUpdate');
-        Route::delete('/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('categoryDelete');
+        Route::get('/category', [CategoryController::class, 'index'])->name('categoryIndex');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('categoryCreate');
+        Route::post('/category/store', [CategoryController::class, 'store'])->name('categoryStore');
+        Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('categoryEdit');
+        Route::patch('/category/update/{id}', [CategoryController::class, 'update'])->name('categoryUpdate');
+        Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('categoryDelete');
 
         Route::get('/subcategory/{category_id}', [SubcategoryController::class, 'index'])->name('subcategoryIndex');
-        Route::get('/subcategory/create/{category_id}', [SubcategoryController::class, 'subcategoryCreate'])->name('subcategoryCreate');
-        Route::post('/subcategory/store', [SubcategoryController::class, 'subcategoryStore'])->name('subcategoryStore');
-        Route::get('/subcategory/edit/{category_id}/{id}', [SubcategoryController::class, 'subcategoryEdit'])->name('subcategoryEdit');
-        Route::patch('/subcategory/update/{id}', [SubcategoryController::class, 'subcategoryUpdate'])->name('subcategoryUpdate');
-        Route::delete('/subcategory/delete/{id}', [SubcategoryController::class, 'subcategoryDelete'])->name('subcategoryDelete');
+        Route::get('/subcategory/create/{category_id}', [SubcategoryController::class, 'create'])->name('subcategoryCreate');
+        Route::post('/subcategory/store', [SubcategoryController::class, 'store'])->name('subcategoryStore');
+        Route::get('/subcategory/edit/{category_id}/{id}', [SubcategoryController::class, 'edit'])->name('subcategoryEdit');
+        Route::patch('/subcategory/update/{id}', [SubcategoryController::class, 'update'])->name('subcategoryUpdate');
+        Route::delete('/subcategory/delete/{id}', [SubcategoryController::class, 'delete'])->name('subcategoryDelete');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
