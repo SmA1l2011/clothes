@@ -20,12 +20,14 @@ class Subcategory extends Model
         'description',
     ];
 
-    public static function getSubcategories($category_id, $id = NULL)
+    public static function getSubcategories($category_id = NULL, $id = NULL)
     {   
         if ($category_id !== NULL && $id !== NULL) {
             return DB::table("subcategories")->where('category_id', $category_id)->where('id', $id)->get();
         } elseif ($category_id !== NULL && $id == NULL) {
             return DB::table("subcategories")->where('category_id', $category_id)->get();
+        } elseif ($category_id == NULL && $id == NULL) {
+            return DB::table("subcategories")->get();
         } else {
             return DB::table("subcategories")->where('id', $id)->get();
         }

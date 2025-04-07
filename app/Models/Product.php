@@ -22,8 +22,18 @@ class Product extends Model
         'stock',
     ];
 
-    public static function getAll(): Collection 
+    public static function getAllProducts($sortBy, $filters = []): Collection 
     {
-        return DB::table("products")->get();
+        if ($sortBy == "priceU") {
+            return DB::table("products")->get()->sortByDesc("price");
+        } else {
+            $sortBy = "price";
+        }
+        return DB::table("products")->get()->sortBy($sortBy);
+    }
+
+    public static function getProduct($id): Collection 
+    {
+        return DB::table("products")->where("id", $id)->get();
     }
 }

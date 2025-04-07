@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\SubcategoryController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,11 +15,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/products', [ProductController::class, 'catalog'])->name('catalog');
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('site')->group(function () {
+        Route::get('/products/index/sortBy={sortBy}', [ProductController::class, 'index'])->name('productIndex');
+        Route::get('/products/product/{id}', [ProductController::class, 'product'])->name('product');
+    });
+});
 
 
 /* Admin Panel */
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/category', [CategoryController::class, 'index'])->name('categoryIndex');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('categoryCreate');

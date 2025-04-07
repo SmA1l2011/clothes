@@ -1,12 +1,19 @@
 <x-app-layout>
     <x-slot name="slot">
-        @isset($error) 
-            <p>{{ $error }}</p>
-        @endif
         <form action="{{ route('categoryStore') }}" method="post">
             @csrf
-            <input type="text" name="title" placeholder="title">
-            <input type="text" name="description" placeholder="description">
+            <div>
+                <input type="text" name="title" placeholder="title">
+                @error("title")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <input type="text" name="description" placeholder="description">
+                @error("description")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
             <input type="submit" name="Create">
         </form>
     </x-slot>

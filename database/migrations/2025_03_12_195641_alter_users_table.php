@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string("surname")->nullable()->after("name");
             $table->string("phone")->unique()->after("email");
+            $table->string("role")->default("user")->after("password");
             $table->softDeletes()->after("updated_at");
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns("users", ["surname", "phone", "deleted_at"]);
+        Schema::dropColumns("users", ["surname", "phone", "role", "deleted_at"]);
     }
 };

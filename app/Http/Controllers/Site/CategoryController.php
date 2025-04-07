@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -19,13 +20,10 @@ class CategoryController extends Controller
         return view("admin/categories/create");
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $data = [
-            "title" => $request->post("title"),
-            "description" => $request->post("description"),
-        ];
-        Category::categoryCreate($data);
+        dd($request->validated());
+        Category::categoryCreate($request->validated());
         return to_route("categoryIndex");
     }
 

@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('catalog')" :active="request()->routeIs('catalog')">
+                    <x-nav-link :href="route('productIndex', 'id')" :active="request()->routeIs('productIndex')">
                         {{ __('Catalog') }}
                     </x-nav-link>
                 </div>
@@ -65,8 +65,8 @@
                 </div>
             @else
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="login">login</x-nav-link>
-                    <x-nav-link href="register">register</x-nav-link>
+                    <x-nav-link href="{{ route('login') }}">login</x-nav-link>
+                    <x-nav-link href="{{ route('register') }}">register</x-nav-link>
                 </div>
             @endif
 
@@ -91,7 +91,7 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('catalog')" :active="request()->routeIs('catalog')">
+            <x-responsive-nav-link :href="route('productIndex', 'id')" :active="request()->routeIs('productIndex')">
                 {{ __('Catalog') }}
             </x-responsive-nav-link>
         </div>
@@ -128,8 +128,8 @@
             </div>
         @else
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link href="login">login</x-nav-link>
-                <x-nav-link href="register">register</x-nav-link>
+                <x-nav-link href="{{ route('login') }}">login</x-nav-link>
+                <x-nav-link href="{{ route('register') }}">register</x-nav-link>
             </div>
         @endif
     </div>
