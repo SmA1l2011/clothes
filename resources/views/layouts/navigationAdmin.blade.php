@@ -12,8 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('productIndex')" :active="request()->routeIs('productIndex')">
-                        {{ __('Catalog') }}
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('categoryIndex')" :active="request()->routeIs('categoryIndex')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminProductIndex')" :active="request()->routeIs('adminProductIndex')">
+                        {{ __('Products') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -58,10 +70,8 @@
                 </div>
             @endif
             
-            @if(auth()->user()->role === "admin")
-                <!-- Button for admin panel -->
-                <x-nav-link class="adminButton" href="{{ route('dashboard') }}">Admin</x-nav-link>
-            @endif
+            <!-- Button for site -->
+            <x-nav-link class="adminButton" href="{{ route('productIndex', 'id') }}">Site</x-nav-link>
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Subcategory;
 use App\Models\Category;
@@ -22,6 +22,7 @@ class SubcategoryController extends Controller
 
     public function store(Request $request)
     {
+        // dd(explode("/", $request->url())[5]);
         $data = [
             "category_id" => $request->post("category_id"),
             "title" => $request->post("title"),

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="slot">
         <nav class="filter-sort">
-            <form action="{{ route('productIndex') }}" method="get" class="sort-block">
+            <form action="{{ route('adminProductIndex') }}" method="get" class="sort-block">
                 <p>sort:</p>
                 @isset ($_GET['sortBy'])
                     @if ($_GET['sortBy'] == 'default')
@@ -40,7 +40,7 @@
                     @endif
                 @endforeach
             </form>
-            <form action="{{ route('productIndex') }}" method="get" class="filter-block">
+            <form action="{{ route('adminProductIndex') }}" method="get" class="filter-block">
                 <p>filters:</p>
                 <input type="text" name="title" placeholder="filter by title" value="{{ $_GET['title'] ?? '' }}">
                 <input type="number" name="minPrice" placeholder="min price" value="{{ $_GET['minPrice'] ?? '' }}">
@@ -56,13 +56,14 @@
                 @endif
                 <input type="submit" value="sand">
             </form>
-            <form action="{{ route('productIndex') }}" method="get" class="filter-block">
+            <form action="{{ route('adminProductIndex') }}" method="get" class="filter-block">
                 <input type="submit" name="clear" value="clear filters">
             </form>
         </nav>
+        <a class="product-createButton" href="{{ route('adminProductCreate') }}">create</a>
         <div class="wrapper flex">
             @foreach ($allProducts as $product)
-                <a href="{{ route('product', $product->id) }}" class="product">
+                <a href="{{ route('adminProduct', $product->id) }}" class="product">
                     <div class="text-info">
                         @if($product->isScroll === true)
                             <h2 style="overflow-x: scroll;" >{{ $product->title }}</h2>

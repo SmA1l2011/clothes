@@ -20,7 +20,36 @@
 }
 
 input[type="submit"] {
-    
+    appearance: none;
+    background-color: #fff;
+    border-color: #6b7280;
+    border-width: 1px;
+    border-radius: 0px;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    transition: all 0.3s ease;
+    --tw-shadow: 0 0 #0000;
+}
+
+input[type="submit"]:hover {
+    color: #fff; 
+    border-color: #fff; 
+    background: transparent;
+}
+
+.nav-menu {
+    position: relative;
+}
+
+.adminButton {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
 }
 
 .filter-sort {
@@ -123,4 +152,20 @@ a,
 
 .product p {
     font-size: 12px;
+}
+
+.product-createButton {
+    top: 76px;
+    left: 10px;
+    max-width: 200px;
+    padding: 12px 50px;
+    border: 1px solid #fff;
+    color: #fff;
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.product-createButton:hover {
+    background: #fff;
+    color: #000;
 }

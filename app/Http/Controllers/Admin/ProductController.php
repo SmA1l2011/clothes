@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Subcategory;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
     public function index()
-    {   
+    {
         if (isset($_GET["sortBy"])) {
             switch ($_GET["sortBy"]) {
                 case "title":
@@ -51,12 +52,50 @@ class ProductController extends Controller
                 $allProducts[$key]->isScroll = false;
             }
         }
-        return view("site/products/index", compact("allProducts", "allSubcategories"));
+        return view("admin/products/index", compact("allProducts", "allSubcategories"));
+    }
+
+    public function create()
+    {   
+        $allSubcategories = Subcategory::getSubcategories();
+        return view("admin/products/create", compact("allSubcategories"));
+    }
+
+    public function store(ProductRequest $request)
+    {
+        Product::productCreate($request->post());
+        return to_route("adminProductIndex");
+    }
+
+    public function edit(int $id)
+    {
+        $product = Product::getProduct($id)[0];
+        $allSubcategories = Subcategory::getSubcategories();
+        return view("admin/products/edit", compact("product", "allSubcategories"));
+    }
+    
+    public function update(Request $request, $id)
+    {   
+        $data = [
+            "subcategory_id" => $request->post("subcategory"),
+            "title" => $request->post("title"),
+            "description" => $request->post("description"),
+            "price" => $request->post("price"),
+            "stock" => $request->post("stock"),
+        ];
+        Product::productUpdate($data, $id);
+        return to_route("adminProduct", $id);
+    }
+
+    public function delete($id)
+    {
+        Product::productDelete($id);
+        return to_route("adminProductIndex");
     }
 
     public function product(int $id) 
     {
         $product = Product::getProduct($id)[0];
-        return view("site/products/product", compact("product"));
+        return view("admin/products/product", compact("product"));
     }
 }

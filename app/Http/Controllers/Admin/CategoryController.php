@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -22,7 +22,6 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        dd($request->validated());
         Category::categoryCreate($request->validated());
         return to_route("categoryIndex");
     }
