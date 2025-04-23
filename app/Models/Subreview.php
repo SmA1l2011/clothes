@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Subreview extends Model
 {
@@ -22,9 +24,15 @@ class Subreview extends Model
         'comment',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function getAllSubreviews($id = NULL, $get = [], $is_site = false)
     {
-        $query = DB::table("subreviews")->join("users", "subreviews.user_id", "=", "users.id");
+        // $query = DB::table("subreviews")->join("users", "subreviews.user_id", "=", "users.id");
+        $query = Subreview::query()->with("user");
         if ($is_site == true) {
             $query->where("subreviews.is_active", true);
         }

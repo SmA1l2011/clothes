@@ -12,12 +12,6 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('userIndex')" :active="request()->routeIs('userIndex')">
                         {{ __('User') }}
                     </x-nav-link>
@@ -42,7 +36,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adminReviewIndex')" :active="request()->routeIs('adminReviewIndex')">
+                    <x-nav-link :href="route('adminOrderIndex')" :active="request()->routeIs('adminOrderIndex')">
                         {{ __('Orders') }}
                     </x-nav-link>
                 </div>

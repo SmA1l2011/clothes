@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {   
-        $allUsers = User::getAllUsers();
+        $allUsers = User::getAllUsers(isset($_GET["id"]) ? $_GET["id"] : NULL);
         return view("admin/users/index", compact("allUsers"));
     }
 

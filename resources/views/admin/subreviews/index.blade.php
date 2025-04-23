@@ -59,7 +59,6 @@
                 @isset ($_GET["sortBy"]) 
                     <input type="hidden" name="sortBy" value="{{ $_GET['sortBy'] }}">
                 @endif
-                <input type="submit" value="sand">
             </form>
             <form action="{{ route('adminSubreviewIndex', request('id')) }}" method="get" class="filter-block">
                 <input type="submit" name="clear" value="clear filters">
@@ -70,7 +69,6 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>review_id</th>
                         <th>name</th>
                         <th>rating</th>
                         <th>comment</th>
@@ -82,15 +80,15 @@
                     @foreach ($allSubreviews as $subreview)
                         <tr>
                             <td>{{ $subreview->id }}</td>
-                            <td>{{ $subreview->review_id }}</td>
-                            <td>{{ $subreview->name }}</td>
+                            <td>{{ $subreview->user->name }}</td>
                             <td>{{ $subreview->rating }}</td>
                             <td>{{ $subreview->comment }}</td>
                             <td>{{ $subreview->is_active ? "yes" : "no" }}</td>
                             <td>
                                 <form class="review__form" action="{{ route('adminSubreviewStore') }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ request('id') }}">
+                                    <input type="hidden" name="review_id" value="{{ request('id') }}">
+                                    <input type="hidden" name="id" value="{{ $subreview->id }}">
                                     <input type="submit" name="is_active" value="{{ $subreview->is_active ? 'not approve' : 'approve' }}">
                                 </form>
                             </td>

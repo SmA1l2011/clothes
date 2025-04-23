@@ -49,9 +49,13 @@ class User extends Authenticatable
         ];
     }
 
-    public static function getAllUsers()
+    public static function getAllUsers($id = NULL)
     {
-        return DB::table("users")->get();
+        if ($id == NULL) {
+            return DB::table("users")->get();
+        } else {
+            return DB::table("users")->where("id", $id)->get();
+        }
     }
 
     public static function userUpdate($data)

@@ -48,7 +48,11 @@
                 <select name="subcategory">
                     <option value="all">all</option>
                     @foreach ($allSubcategories as $subcategory)
-                        <option value="{{ $subcategory->id }}">{{ $subcategory->title }}</option>
+                        @if (isset($_GET["subcategory"]) && $subcategory->id == $_GET["subcategory"])
+                            <option selected value="{{ $subcategory->id }}">{{ $subcategory->title }}</option>
+                        @else
+                            <option value="{{ $subcategory->id }}">{{ $subcategory->title }}</option>
+                        @endif
                     @endforeach
                 </select>
                 @isset ($_GET["sortBy"]) 

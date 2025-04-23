@@ -17,6 +17,6 @@ class SubreviewController extends Controller
     public function store(Request $request)
     {
         Subreview::subreviewApprove($request["id"], $request["is_active"]);
-        return to_route("adminSubreviewIndex");
+        return to_route("adminSubreviewIndex", $request["review_id"]);
     }
 }

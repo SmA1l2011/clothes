@@ -118,6 +118,15 @@ h1 {
     padding-left: 10px;
 }
 
+.table .admin-order_submit {
+    padding: unset;
+    background: unset;
+    border: unset;
+}
+
+.table .admin-order_submit:hover {
+    cursor: pointer;
+}
 
 .table-input {
     width: 100%;

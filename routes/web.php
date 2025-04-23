@@ -73,6 +73,9 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
         Route::get('/subreviews/index/{id}', [AdminSubreviewController::class, 'index'])->name('adminSubreviewIndex');
         Route::post('/subreviews/store', [AdminSubreviewController::class, 'store'])->name('adminSubreviewStore');
+
+        Route::get('/orders/index', [AdminOrderController::class, 'index'])->name('adminOrderIndex');
+        Route::delete('/orders/delete/{id}', [AdminOrderController::class, 'delete'])->name('orderDelete');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

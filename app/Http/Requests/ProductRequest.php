@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "subcategory_id" => "",
+            "subcategory_id" => ["required", "integer", ""],
             "title" => ["required", "string", "max:255"],
             "description" => ["required", "string", "max:999"],
         ];
