@@ -22,7 +22,7 @@ class Product extends Model
         'stock',
     ];
 
-    public static function getAllProducts($sortBy = "id", $filters = [])
+    public static function getAllProducts($sortBy = "id", $filters = [], $productsArr = [])
     {
         $query = Product::query();
         if (!empty($filters["title"])) {
@@ -36,6 +36,13 @@ class Product extends Model
         } 
         if (!empty($filters["subcategory"]) && $filters["subcategory"] !== "all") {
             $query->where("subcategory_id", $filters["subcategory"]);
+        }    
+        if (!empty($productsArr)) {
+            $arr = [];
+            foreach ($productsArr as $product) {
+                $arr[] = $product[0];
+            }
+            $query->whereIn("id", $arr);
         }
         $query = $query->get();
         if ($sortBy == "priceD") {

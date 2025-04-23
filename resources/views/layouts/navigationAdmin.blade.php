@@ -18,6 +18,12 @@
                 </div>
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('userIndex')" :active="request()->routeIs('userIndex')">
+                        {{ __('User') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('categoryIndex')" :active="request()->routeIs('categoryIndex')">
                         {{ __('Category') }}
                     </x-nav-link>
@@ -26,6 +32,18 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminProductIndex')" :active="request()->routeIs('adminProductIndex')">
                         {{ __('Products') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminReviewIndex')" :active="request()->routeIs('adminReviewIndex')">
+                        {{ __('Reviews') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminReviewIndex')" :active="request()->routeIs('adminReviewIndex')">
+                        {{ __('Orders') }}
                     </x-nav-link>
                 </div>
             </div>

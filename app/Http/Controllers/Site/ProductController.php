@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Models\Product;
 use App\Models\Subcategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -52,6 +53,21 @@ class ProductController extends Controller
             }
         }
         return view("site/products/index", compact("allProducts", "allSubcategories"));
+    }
+
+    public function store(Request $request)
+    {
+        if (Session::has("orders")) {
+            $orders = [];
+            $orders[] = [$request->post("order"), 1, $request->post("price")];
+            foreach (Session::get("orders") as $order) {
+                $orders[] = $order;
+            }
+            Session::put("orders", $orders);
+        } else {
+            Session::put("orders", [0 => [$request->post("order"), 1, $request->post("price")]]);
+        }
+        return to_route("orderIndex");
     }
 
     public function product(int $id) 

@@ -22,7 +22,6 @@ class SubcategoryController extends Controller
 
     public function store(Request $request)
     {
-        // dd(explode("/", $request->url())[5]);
         $data = [
             "category_id" => $request->post("category_id"),
             "title" => $request->post("title"),

@@ -15,17 +15,6 @@ class CategoryController extends Controller
         return view("admin/categories/index", compact("allCategories"));
     }
 
-    public function create()
-    {   
-        return view("admin/categories/create");
-    }
-
-    public function store(CategoryRequest $request)
-    {
-        Category::categoryCreate($request->validated());
-        return to_route("categoryIndex");
-    }
-
     public function edit(int $id)
     {
         $category = Category::getAllCategories($id);

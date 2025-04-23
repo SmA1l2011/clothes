@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -45,5 +47,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function getAllUsers()
+    {
+        return DB::table("users")->get();
+    }
+
+    public static function userUpdate($data)
+    {
+        DB::table("users")->where('id', $data["id"])->update([
+            "name" => $data["name"],
+            "surname" => $data["surname"],
+            "email" => $data["email"],
+            "phone" => $data["phone"],
+            "password" => Hash::make($data["password"]),
+            "role" => $data["role"],
+            "updated_at" => now(),
+        ]);
     }
 }

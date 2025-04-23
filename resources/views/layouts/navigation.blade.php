@@ -16,6 +16,12 @@
                         {{ __('Catalog') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('orderIndex')" :active="request()->routeIs('orderIndex')">
+                        {{ __('Card') }}
+                    </x-nav-link>
+                </div>
             </div>
             @if (auth()->user())
                 <!-- Settings Dropdown -->
