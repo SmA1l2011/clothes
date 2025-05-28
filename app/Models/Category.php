@@ -18,7 +18,7 @@ class Category extends Model
         'description',
     ];
 
-    public static function getAllCategories($id = NULL)
+    public static function getAllCategories($id = null)
     {
         if (isset($id)) {
             return DB::table("categories")->where('id', $id)->first();

@@ -15,19 +15,19 @@ class OrderController extends Controller
             switch ($_GET["sortBy"]) {
                 case "default":
                     $sortBy = "id";
-                break;
+                    break;
 
                 case "price down":
                     $sortBy = "priceD";
-                break;
+                    break;
 
                 case "price up":
                     $sortBy = "priceU";
-                break;
-                    
+                    break;
+
                 default:
                     $sortBy = $_GET["sortBy"];
-                break;
+                    break;
             }
         } else {
             $sortBy = "id";

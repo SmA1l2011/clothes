@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,13 +20,13 @@ class Subcategory extends Model
         'description',
     ];
 
-    public static function getSubcategories($category_id = NULL, $id = NULL)
-    {   
-        if ($category_id !== NULL && $id !== NULL) {
+    public static function getSubcategories($category_id = null, $id = null)
+    {
+        if ($category_id !== null && $id !== null) {
             return DB::table("subcategories")->where('category_id', $category_id)->where('id', $id)->get();
-        } elseif ($category_id !== NULL && $id == NULL) {
+        } elseif ($category_id !== null && $id == null) {
             return DB::table("subcategories")->where('category_id', $category_id)->get();
-        } elseif ($category_id == NULL && $id == NULL) {
+        } elseif ($category_id == null && $id == null) {
             return DB::table("subcategories")->get();
         } else {
             return DB::table("subcategories")->where('id', $id)->get();

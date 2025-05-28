@@ -10,13 +10,13 @@ use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
 {
     public function index(Request $request)
-    {   
+    {
         $allCategories = Category::getAllCategories();
         return view("admin/categories/index", compact("allCategories"));
     }
 
     public function create()
-    {   
+    {
         return view("admin/categories/create");
     }
 
@@ -31,14 +31,10 @@ class CategoryController extends Controller
         $category = Category::getAllCategories($id);
         return view("admin/categories/edit", compact("category"));
     }
-    
-    public function update(Request $request, $id)
-    {   
-        $data = [
-            "title" => $request->post("title"),
-            "description" => $request->post("description"),
-        ];
-        Category::categoryUpdate($data, $id);
+
+    public function update(CategoryRequest $request, $id)
+    {
+        Category::categoryUpdate($request->validated(), $id);
         return to_route("categoryIndex");
     }
 

@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 class SubcategoryController extends Controller
 {
     public function index(int $category_id)
-    {   
+    {
         $subcategories = Subcategory::getSubcategories($category_id);
         return view("admin/subcategories/index", compact("subcategories"));
     }
 
     public function create()
-    {   
+    {
         return view("admin/subcategories/create");
     }
 
@@ -31,15 +31,15 @@ class SubcategoryController extends Controller
         return to_route("subcategoryIndex", $request->post("category_id"));
     }
 
-    public function edit(int $category_id ,int $id)
+    public function edit(int $category_id, int $id)
     {
         $allCategories = Category::getAllCategories();
-        $subcategory = Subcategory::getSubcategories(NULL, $id)[0];
+        $subcategory = Subcategory::getSubcategories(null, $id)[0];
         return view("admin/subcategories/edit", compact("allCategories", "subcategory"));
     }
-    
+
     public function update(Request $request, $id)
-    {   
+    {
         $data = [
             "category_id" => $request->post("category_id"),
             "title" => $request->post("title"),

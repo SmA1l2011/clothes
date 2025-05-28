@@ -12,10 +12,30 @@
                     @endif
                 @endforeach
             </select>
-            <input type="text" name="title" value="{{ $product->title }}">
-            <input type="text" name="description" value="{{ $product->description }}">
-            <input type="number" name="price" value="{{ $product->price }}">
-            <input type="number" name="stock" value="{{ $product->stock }}">
+            <div>
+                <input type="text" name="title" value="{{ $product->title }}">
+                @error("title")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <input type="text" name="description" value="{{ $product->description }}">
+                @error("description")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <input type="number" name="price" value="{{ $product->price }}">
+                @error("price")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <input type="number" name="stock" value="{{ $product->stock }}">
+                @error("stock")
+                    <p class="err">{{ $message }}</p>
+                @enderror
+            </div>
             <input type="submit" value="Update">
         </form>
     </x-slot>

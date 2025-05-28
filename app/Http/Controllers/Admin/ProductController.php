@@ -16,19 +16,19 @@ class ProductController extends Controller
             switch ($_GET["sortBy"]) {
                 case "title":
                     $sortBy = "title";
-                break;
-    
+                    break;
+
                 case "price down":
                     $sortBy = "priceD";
-                break;
-    
+                    break;
+
                 case "price up":
                     $sortBy = "priceU";
-                break;
-                    
+                    break;
+
                 default:
                     $sortBy = "id";
-                break;
+                    break;
             }
         } else {
             $sortBy = "id";
@@ -42,7 +42,7 @@ class ProductController extends Controller
         foreach ($allProducts as $key => $product) {
             $isOk = false;
             foreach (explode(" ", $product->title) as $title) {
-                if(strlen($title) > 16 && $isOk === false) {
+                if (strlen($title) > 16 && $isOk === false) {
                     $isOk = true;
                 }
             }
@@ -56,14 +56,15 @@ class ProductController extends Controller
     }
 
     public function create()
-    {   
+    {
         $allSubcategories = Subcategory::getSubcategories();
         return view("admin/products/create", compact("allSubcategories"));
     }
 
     public function store(ProductRequest $request)
     {
-        Product::productCreate($request->post());
+        // dd($request->all());
+        Product::productCreate($request->validated());
         return to_route("adminProductIndex");
     }
 
@@ -73,17 +74,10 @@ class ProductController extends Controller
         $allSubcategories = Subcategory::getSubcategories();
         return view("admin/products/edit", compact("product", "allSubcategories"));
     }
-    
-    public function update(Request $request, $id)
-    {   
-        $data = [
-            "subcategory_id" => $request->post("subcategory"),
-            "title" => $request->post("title"),
-            "description" => $request->post("description"),
-            "price" => $request->post("price"),
-            "stock" => $request->post("stock"),
-        ];
-        Product::productUpdate($data, $id);
+
+    public function update(ProductRequest $request, $id)
+    {
+        Product::productUpdate($request->validated(), $id);
         return to_route("adminProduct", $id);
     }
 
@@ -93,7 +87,7 @@ class ProductController extends Controller
         return to_route("adminProductIndex");
     }
 
-    public function product(int $id) 
+    public function product(int $id)
     {
         $product = Product::getProduct($id)[0];
         return view("admin/products/product", compact("product"));

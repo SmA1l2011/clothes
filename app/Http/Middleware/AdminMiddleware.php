@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() === NULL || $request->user()->role !== "admin") {
+        if ($request->user() === null || $request->user()->role !== "admin") {
             abort(403, "access denied");
         }
         return $next($request);

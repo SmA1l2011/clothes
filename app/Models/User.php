@@ -11,7 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -49,9 +50,9 @@ class User extends Authenticatable
         ];
     }
 
-    public static function getAllUsers($id = NULL)
+    public static function getAllUsers($id = null)
     {
-        if ($id == NULL) {
+        if ($id == null) {
             return DB::table("users")->get();
         } else {
             return DB::table("users")->where("id", $id)->get();

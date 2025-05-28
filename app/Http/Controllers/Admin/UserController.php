@@ -9,13 +9,13 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function index()
-    {   
-        $allUsers = User::getAllUsers(isset($_GET["id"]) ? $_GET["id"] : NULL);
+    {
+        $allUsers = User::getAllUsers(isset($_GET["id"]) ? $_GET["id"] : null);
         return view("admin/users/index", compact("allUsers"));
     }
 
     public function create()
-    {   
+    {
         return view("admin/user/create");
     }
 

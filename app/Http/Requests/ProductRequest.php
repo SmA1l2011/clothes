@@ -22,9 +22,11 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "subcategory_id" => ["required", "integer", ""],
+            "subcategory_id" => ["required", "integer", "exists:subcategories,id"],
             "title" => ["required", "string", "max:255"],
             "description" => ["required", "string", "max:999"],
+            "price" => ["required", "numeric", "max:999999"],
+            "stock" => ["required", "integer", "max:999999"],
         ];
     }
 
@@ -34,6 +36,8 @@ class ProductRequest extends FormRequest
             "title" => "id is required and has to be no more than 11",
             "title" => "title is required and has to be no more than 255",
             "description" => "description is required and has to be no more than 999",
+            "price" => "price is required and has to be no more than 999",
+            "stock" => "stock is required and has to be no more than 11",
         ];
     }
 }

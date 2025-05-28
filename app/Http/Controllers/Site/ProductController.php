@@ -11,24 +11,24 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index()
-    {   
+    {
         if (isset($_GET["sortBy"])) {
             switch ($_GET["sortBy"]) {
                 case "title":
                     $sortBy = "title";
-                break;
-    
+                    break;
+
                 case "price down":
                     $sortBy = "priceD";
-                break;
-    
+                    break;
+
                 case "price up":
                     $sortBy = "priceU";
-                break;
-                    
+                    break;
+
                 default:
                     $sortBy = "id";
-                break;
+                    break;
             }
         } else {
             $sortBy = "id";
@@ -42,7 +42,7 @@ class ProductController extends Controller
         foreach ($allProducts as $key => $product) {
             $isOk = false;
             foreach (explode(" ", $product->title) as $title) {
-                if(strlen($title) > 16 && $isOk === false) {
+                if (strlen($title) > 16 && $isOk === false) {
                     $isOk = true;
                 }
             }
@@ -70,7 +70,7 @@ class ProductController extends Controller
         return to_route("orderIndex");
     }
 
-    public function product(int $id) 
+    public function product(int $id)
     {
         $product = Product::getProduct($id)[0];
         return view("site/products/product", compact("product"));

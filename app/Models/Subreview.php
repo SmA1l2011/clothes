@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
 class Subreview extends Model
 {
     public $table = 'subreviews';
@@ -29,14 +28,14 @@ class Subreview extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function getAllSubreviews($id = NULL, $get = [], $is_site = false)
+    public static function getAllSubreviews($id = null, $get = [], $is_site = false)
     {
         // $query = DB::table("subreviews")->join("users", "subreviews.user_id", "=", "users.id");
         $query = Subreview::query()->with("user");
         if ($is_site == true) {
             $query->where("subreviews.is_active", true);
         }
-        if ($id !== NULL) {
+        if ($id !== null) {
             $query->where("subreviews.review_id", $id);
         }
         if (isset($get["is_active"]) && $get["is_active"] !== "all") {

@@ -12,7 +12,7 @@ class ReviewController extends Controller
     public function index()
     {
         $allProducts = Product::getAllProducts();
-        $allReviews = Review::getAllReviews(NULL, $_GET);
+        $allReviews = Review::getAllReviews(null, $_GET);
         return view("admin/reviews/index", compact("allReviews", "allProducts"));
     }
 

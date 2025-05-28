@@ -12,7 +12,7 @@ class Product extends Model
     public $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
-     * 
+     *
      */
     public $fillable = [
         'subcategory_id',
@@ -30,13 +30,13 @@ class Product extends Model
         }
         if (!empty($filters["minPrice"])) {
             $query->where("price", ">=", $filters["minPrice"]);
-        } 
+        }
         if (!empty($filters["maxPrice"])) {
             $query->where("price", "<=", $filters["maxPrice"]);
-        } 
+        }
         if (!empty($filters["subcategory"]) && $filters["subcategory"] !== "all") {
             $query->where("subcategory_id", $filters["subcategory"]);
-        }    
+        }
         if (!empty($productsArr)) {
             $arr = [];
             foreach ($productsArr as $product) {
@@ -58,7 +58,7 @@ class Product extends Model
     public static function productCreate($data)
     {
         DB::table("products")->insert([
-            "subcategory_id" => $data["subcategory"],
+            "subcategory_id" => $data["subcategory_id"],
             "title" => $data["title"],
             "description" => $data["description"],
             "price" => $data["price"],
@@ -85,7 +85,7 @@ class Product extends Model
         DB::table("products")->where('id', $id)->delete();
     }
 
-    public static function getProduct($id): Collection 
+    public static function getProduct($id): Collection
     {
         return DB::table("products")->where("id", $id)->get();
     }

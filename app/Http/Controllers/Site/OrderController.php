@@ -15,11 +15,11 @@ class OrderController extends Controller
         // $orders = Session::get("orders");
         // unset($orders[""]);
         // Session::put("orders", $orders);
-        if (Session::get("orders") !== NULL) {
+        if (Session::get("orders") !== null) {
             $count = key(Session::get("orders"));
             $orderProduct = Product::getAllProducts("id", [], Session::get("orders"));
         } else {
-            $count = NULL;
+            $count = null;
             $orderProduct = [];
         }
         $allOrders = Order::getAllOrders();
@@ -29,7 +29,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $orders = Session::get("orders");
-        if ($request->post("order") !== NULL) {
+        if ($request->post("order") !== null) {
             foreach ($orders as $key => $order) {
                 $data = [
                     "product_id" => $order[0],
@@ -43,10 +43,10 @@ class OrderController extends Controller
             }
             $orders = [];
         }
-        if ($request->post("id") !== NULL) {
+        if ($request->post("id") !== null) {
             $orders[$request->post("id")][1] = $request->post("count");
         }
-        if ($request->post("delete") !== NULL) {
+        if ($request->post("delete") !== null) {
             foreach ($orders as $key => $order) {
                 if ($order[0] == $request->post("product_id")) {
                     unset($orders[$key]);

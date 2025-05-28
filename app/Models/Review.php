@@ -22,14 +22,14 @@ class Review extends Model
         'comment',
     ];
 
-    public static function getAllReviews($id = NULL, $get = [], $is_site = false)
+    public static function getAllReviews($id = null, $get = [], $is_site = false)
     {
         $query = DB::table("reviews")->join("users", "reviews.user_id", "=", "users.id")
             ->select("reviews.*", "users.name");
         if ($is_site == true) {
             $query->where("reviews.is_active", true);
         }
-        if ($id !== NULL) {
+        if ($id !== null) {
             $query->where("reviews.product_id", $id);
         }
         if (isset($get["is_active"]) && $get["is_active"] !== "all") {

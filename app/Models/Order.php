@@ -19,19 +19,19 @@ class Order extends Model
         'count',
         'total',
     ];
-    
+
     public static function getAllOrders($sortBy = "id", $filters = [])
     {
         $query = Order::query();
         if (!empty($filters["minPrice"])) {
             $query->where("price", ">=", $filters["minPrice"]);
-        } 
+        }
         if (!empty($filters["maxPrice"])) {
             $query->where("price", "<=", $filters["maxPrice"]);
-        } 
+        }
         if (!empty($filters["user_id"]) && $filters["user_id"] !== "all") {
             $query->where("user_id", $filters["user_id"]);
-        }    
+        }
         $query = $query->get();
         if ($sortBy == "priceD") {
             $products = $query->sortBy("price", SORT_REGULAR, "desc");
